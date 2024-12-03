@@ -2,5 +2,23 @@
     "number_cameras": 1,
     "image_width": 640,
     "image_height": 512,
-    "exposure": 1000
+    "exposure": 1000,
+    "video_encoding": {
+        "server_ip": "127.0.0.1",
+        "stream_width": 640,
+        "stream_height": 512,
+        "camera_width": 640,
+        "camera_height": 512,
+        "frame_rate": 120,
+        "encoder": "hevc_nvenc",
+        "decoder": "hevc_cuvid",
+        "bitrate": 10,
+        "gop_size": 60000,
+        "pre_allocated_buffer_size": 100000000,
+        "preset": "p4",
+        "tune": "ull",
+        "split_encode_mode": "0",
+        "output_video_path": "../output",
+        "output_timestamp_path": "../output_timestamps"
+    }
 }

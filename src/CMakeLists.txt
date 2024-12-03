@@ -10,3 +10,31 @@ target_link_libraries(camera_capture
     m3api
     ${OpenCV_LIBS}
 )
+
+add_library(video_encoding
+    video_encoding.cpp
+    network_connection.cpp
+)
+
+target_link_libraries(video_encoding
+    PUBLIC
+    yuv
+    ${AVCODEC_LIBRARIES}
+    ${AVFORMAT_LIBRARIES}
+    ${AVUTIL_LIBRARIES}
+    ${OpenCV_LIBS}
+)
+
+add_library(video_decoding
+    video_decoding.cpp
+    network_connection.cpp
+)
+
+target_link_libraries(video_decoding
+    PUBLIC
+    yuv
+    ${AVCODEC_LIBRARIES}
+    ${AVFORMAT_LIBRARIES}
+    ${AVUTIL_LIBRARIES}
+    ${OpenCV_LIBS}
+)

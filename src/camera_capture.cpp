@@ -68,6 +68,8 @@ void CameraCapture::set_camera_param() {
   this->stat = xiSetParamInt(*this->hDevice_, XI_PRM_HEIGHT, this->img_height_);
   HandleResult(this->stat,"xiSetParam (XI_PRM_HEIGHT set)");
 
+  // TODO:
+  // Temporary disable high frame rate configuration
   // High frame rate configuration
   this->stat = xiSetParamInt(*this->hDevice_, XI_PRM_SENSOR_FEATURE_SELECTOR, XI_SENSOR_FEATURE_ZEROROT_ENABLE);
   HandleResult(this->stat,"xiSetParam (XI_PRM_SENSOR_FEATURE_SELECTOR set)");
@@ -77,6 +79,11 @@ void CameraCapture::set_camera_param() {
   HandleResult(this->stat,"xiSetParam (XI_PRM_DOWNSAMPLING set)");
   this->stat = xiSetParamInt(*this->hDevice_, XI_PRM_DOWNSAMPLING_TYPE, XI_SKIPPING);
   HandleResult(this->stat,"xiSetParam (XI_PRM_DOWNSAMPLING_TYPE set)");
+
+  this->stat = xiSetParamInt(*this->hDevice_, XI_PRM_ACQ_TIMING_MODE, XI_ACQ_TIMING_MODE_FRAME_RATE);
+  HandleResult(this->stat,"xiSetParam (XI_PRM_ACQ_TIMING_MODE set)");
+  this->stat = xiSetParamFloat(*this->hDevice_, XI_PRM_FRAMERATE, 120);
+  HandleResult(this->stat,"xiSetParam (XI_PRM_FRAMERATE set)");
 }
 
 void CameraCapture::query_camera_param() {
@@ -143,4 +150,6 @@ void CameraCapture::stop_capture() {
 
   this->stat = xiCloseDevice(*this->hDevice_);
   HandleResult(this->stat,"xiCloseDevice");
+
+  std::cout << "Camera capture stopped\n";
 }
