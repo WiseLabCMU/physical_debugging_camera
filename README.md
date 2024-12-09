@@ -11,6 +11,10 @@ Ubuntu 22.04 (x86_64)
 ## Dependencies
 [XIMEA Camera SDK](https://www.ximea.com/support/wiki/apis/XIMEA_Linux_Software_Package)
 
+To support more than one camera, add the following line to /etc/rc.local or analogous file:
+
+`echo 0 > /sys/module/usbcore/parameters/usbfs_memory_mb`
+
 ### Install with apt
 OpenCV, JsonCpp
 ```
